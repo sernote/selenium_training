@@ -13,5 +13,8 @@ class Application:
         self.wd.find_element_by_name('password').send_keys('admin')
         self.wd.find_element_by_name('login').click()
 
+    def go_to_main_page(self):
+        self.wd.get('http://localhost/litecart')
+
     def destroy(self):
         self.wd.quit()
