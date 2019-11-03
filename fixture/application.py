@@ -1,9 +1,10 @@
 from selenium import webdriver
-
+from fixture.navigation import Navigation
 
 class Application:
     def __init__(self):
         self.wd = webdriver.Chrome()
+        self.navi = Navigation(self)
 
     def login_as_admin(self):
         self.wd.get('http://localhost/litecart/admin/')
