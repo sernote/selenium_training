@@ -10,3 +10,7 @@ class Navigation:
     def go_to_geo_zones(self):
         wd = self.app.wd
         wd.get('http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones')
+
+    def go_to_main_page(self):
+        wd = self.app.wd
+        wd.get('http://localhost/litecart/en/')
