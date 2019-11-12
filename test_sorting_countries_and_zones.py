@@ -29,11 +29,10 @@ def test_countries_sorting(app):
 def test_geo_zones_sorting(app):
     app.login_as_admin()
     app.navi.go_to_geo_zones()
-    country_links = app.wd.find_elements_by_css_selector('table.dataTable .row a')
+    country_links = app.wd.find_elements_by_css_selector('table.dataTable .row a:not([title=Edit])')
     countries = {x.get_attribute('text'): x.get_attribute('href') for x in country_links}
     for name, link in countries.items():
         app.wd.get(link)
-        table_zones = app.wd.find_element_by_css_selector('table#table-zones')
-        zones = table_zones.find_elements_by_css_selector('tr:not(.header)')[:-1]
-        zones_names = [x.find_element_by_tag_name('td:nth-child(3) option[selected]').text for x in zones]
+        zones = app.wd.find_elements_by_xpath('//table[@id="table-zones"]//tr[not(@class="header")]/td[3]//option[@selected]')
+        zones_names = [x.text for x in zones]
         assert zones_names == sorted(zones_names), 'Сортировка зон на странице страны {} не в алфавитном порядке'.format(name)
