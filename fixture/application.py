@@ -5,6 +5,7 @@ class Application:
     def __init__(self):
         self.wd = webdriver.Chrome()
         self.navi = Navigation(self)
+        self.wd.implicitly_wait(2)
 
     def login_as_admin(self):
         self.wd.get('http://localhost/litecart/admin/')
