@@ -1,10 +1,13 @@
 from selenium import webdriver
 from fixture.navigation import Navigation
+from fixture.actions import Actions
+
 
 class Application:
     def __init__(self):
         self.wd = webdriver.Chrome()
         self.navi = Navigation(self)
+        self.do = Actions(self)
         self.wd.implicitly_wait(2)
 
     def login_as_admin(self):
