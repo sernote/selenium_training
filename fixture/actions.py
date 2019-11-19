@@ -10,7 +10,7 @@ class Actions:
 
     def find_and_send_keys(self, xpath_locator, keys):
         wd = self.app.wd
-        element = WebDriverWait(wd, 3).until(EC.element_to_be_clickable((
+        element = WebDriverWait(wd, 3).until(EC.presence_of_element_located((
             By.XPATH, xpath_locator)))
         element.click()
         element.clear()
@@ -18,7 +18,13 @@ class Actions:
 
     def find_and_select_by_value(self, css_locator, value):
         wd = self.app.wd
-        select_element = WebDriverWait(wd, 3).until(EC.element_to_be_clickable((
+        select_element = WebDriverWait(wd, 3).until(EC.presence_of_element_located((
             By.CSS_SELECTOR, css_locator)))
         select = Select(select_element)
         select.select_by_value(value)
+
+    def find_and_click(self, xpath_locator):
+        wd = self.app.wd
+        element = WebDriverWait(wd, 3).until(EC.presence_of_element_located((
+            By.XPATH, xpath_locator)))
+        element.click()
